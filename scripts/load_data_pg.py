@@ -23,7 +23,8 @@ password = 'admin'
 
 # create database
 if create_db:
-	master_conn = pg_util.connect(user = user, password = password)
+	# master_conn = pg_util.connect(user = user, password = password)
+	master_conn = pg_util.connect()
 	pg_util.execute(master_conn.cursor(), 'create database ' + db_name, verbose = True)
 	master_conn.close()
 
@@ -33,7 +34,7 @@ cursor = conn.cursor()
 
 # create tables
 if create_table:
-	sql_path = r'D:\scripts\create_tables.sql'
+	sql_path = r'../query_and_templates/create_tables.sql'
 	pg_util.execute(cursor, open(sql_path, 'r').read(), verbose = True)
 
 # # insert tuples into tables
